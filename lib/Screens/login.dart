@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:vigenesia/Screens/register.dart';
+import 'MainScreens.dart'; // Import MainScreens
+import 'register.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -67,12 +68,26 @@ class _LoginState extends State<Login> {
                           // Button Login
                           ElevatedButton(
                             onPressed: () {
-                              // Add your login logic here
-                              print("Login pressed");
+                              if (emailController.text.isNotEmpty &&
+                                  passwordController.text.isNotEmpty) {
+                                // Lanjut ke halaman MainScreens
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MainScreen(),
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Email dan Password wajib diisi!'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              }
                             },
                             child: Text("Login"),
                           ),
-                          
                           SizedBox(height: 30), // Spacing between button and "Sign Up" text
                           
                           // Teks "Don't Have Account?" dan "Sign Up"
@@ -90,7 +105,7 @@ class _LoginState extends State<Login> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Register(),
+                                          builder: (context) => Register(), // Navigasi ke halaman Register
                                         ),
                                       );
                                     },

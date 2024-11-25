@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import 'Screens/Login.dart';
+import 'Screens/login.dart';
 
-void main() => runApp(MaterialApp(
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Login(),
-    ));
+      home: Login(), // Halaman pertama adalah Login
+    );
+  }
+}
